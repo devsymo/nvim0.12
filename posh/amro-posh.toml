@@ -1,0 +1,65 @@
+"$schema" = "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json"
+version = 4
+final_space = true  # <-- This adds the space between the pointer and your current typing input
+
+[[blocks]]
+alignment = "left"
+type = "prompt"
+
+  [[blocks.segments]]
+  foreground = "#45F1C2"
+  style = "plain"
+  template = " {{ .UserName }} on"
+  type = "session"
+
+  [[blocks.segments]]
+  foreground = "#0CA0D8"
+  style = "plain"
+  template = "  {{ .Path }} "
+  type = "path"
+
+    [blocks.segments.options]
+    folder_separator_icon = "/"
+    style = "full"
+
+  [[blocks.segments]]
+  foreground = "#14A5AE"
+  powerline_symbol = ""
+  style = "plain"
+  template = "{{ .UpstreamIcon }}{{ .HEAD }}{{ if gt .StashCount 0 }}  {{ .StashCount }}{{ end }} "
+  type = "git"
+
+    [blocks.segments.options]
+    fetch_upstream_icon = true
+
+[[blocks]]
+alignment = "left"
+newline = true
+type = "prompt"
+
+  [[blocks.segments]]
+  foreground = "#cd5e42"
+  style = "plain"
+  template = " "
+  type = "root"
+
+  [[blocks.segments]]
+  foreground = "#CD4277"
+  style = "plain"
+  template = "❯"   # Removed the trailing space here because final_space handles it automatically
+  type = "text"
+
+# --- Root Level Prompts ---
+
+[transient_prompt]
+foreground_templates = [
+  "{{if gt .Code 0}}#cd5e42{{end}}", 
+  "{{if eq .Code 0}}#CD4277{{end}}", 
+]
+background = "transparent"
+template = "❯ "
+
+[secondary_prompt]
+foreground = "#CD4277"
+background = "transparent"
+template = "❯❯ "
